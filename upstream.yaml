@@ -1,0 +1,15 @@
+schema_version: "vyges-upstream-v1"
+upstream:
+  type: "monorepo"
+  source: https://github.com/dineshannayya/riscduino
+  path: verilog/rtl/pwm/src
+  branch: master
+import:
+  rtl:
+    - path: "verilog/rtl/pwm/src"
+      map_to: "rtl"
+  license:
+    - path: "LICENSE"
+license:
+  spdx: Apache-2.0
+metadata_locked: false
