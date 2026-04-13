@@ -2,21 +2,36 @@
   "name": "riscduino-pwm",
   "version": "0.1.0",
   "x-version": "1.0.0",
-  "description": "Silicon-proven 6-channel PWM controller with configurable glitch filter, interrupt support, and GPIO input capture. Extracted from dineshannayya/riscduino — validated on Caravel chipIgnite shuttle. Features: 6 independent PWM channels, per-channel duty cycle and period registers, digital glitch filter for noisy environments, GPIO input capture mode (useful for quadrature encoder feedback), interrupt on period completion.",
+  "description": "Silicon-proven 6-channel PWM controller with configurable glitch filter, interrupt support, and GPIO input capture. Extracted from dineshannayya/riscduino \u2014 validated on Caravel chipIgnite shuttle. Features: 6 independent PWM channels, per-channel duty cycle and period registers, digital glitch filter for noisy environments, GPIO input capture mode (useful for quadrature encoder feedback), interrupt on period completion.",
   "license": "Apache-2.0",
-  "design_type": ["digital"],
+  "design_type": [
+    "digital"
+  ],
   "maturity": "imported",
-  "target": ["asic", "fpga"],
+  "target": [
+    "asic",
+    "fpga"
+  ],
   "template": "standalone@1.0.0",
   "created": "2026-04-07T05:14:34Z",
   "updated": "2026-04-07T05:14:34Z",
   "categories": [
     {
       "main_category": "Interface Controllers",
-      "sub_categories": ["Motor Control"]
+      "sub_categories": [
+        "Motor Control"
+      ]
     }
   ],
-  "keywords": ["pwm", "motor-control", "glitch-filter", "input-capture", "riscduino", "silicon-proven", "caravel"],
+  "keywords": [
+    "pwm",
+    "motor-control",
+    "glitch-filter",
+    "input-capture",
+    "riscduino",
+    "silicon-proven",
+    "caravel"
+  ],
   "source": {
     "type": "git",
     "url": "https://github.com/dineshannayya/riscduino",
@@ -33,10 +48,79 @@
   },
   "interfaces": [
     {
+      "type": "clock",
+      "name": "clock",
+      "signals": [
+        {
+          "name": "clk_i",
+          "direction": "input",
+          "type": "clock",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "type": "reset",
+      "name": "reset",
+      "signals": [
+        {
+          "name": "rst_ni",
+          "direction": "input",
+          "type": "reset",
+          "width": 1,
+          "active_level": "low"
+        }
+      ]
+    },
+    {
       "type": "bus",
       "direction": "input",
       "protocol": "register-bus",
-      "description": "Simple register bus interface (cs/wr/addr/wdata/rdata/ack) — needs TL-UL or APB adapter for SoC integration"
+      "description": "Simple register bus interface (cs/wr/addr/wdata/rdata/ack) \u2014 needs TL-UL or APB adapter for SoC integration",
+      "signals": [
+        {
+          "name": "reg_cs",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "reg_wr",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "reg_addr",
+          "direction": "input",
+          "type": "address",
+          "width": 8
+        },
+        {
+          "name": "reg_wdata",
+          "direction": "input",
+          "type": "data",
+          "width": 32
+        },
+        {
+          "name": "reg_be",
+          "direction": "input",
+          "type": "control",
+          "width": 4
+        },
+        {
+          "name": "reg_rdata",
+          "direction": "output",
+          "type": "data",
+          "width": 32
+        },
+        {
+          "name": "reg_ack",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        }
+      ]
     },
     {
       "type": "io",
@@ -78,5 +162,16 @@
   "community": {
     "issues": "https://github.com/vyges-ip/riscduino-pwm/issues",
     "contributions": "https://github.com/vyges-ip/riscduino-pwm/pulls"
+  },
+  "test": {
+    "testbenches": [
+      {
+        "name": "upstream",
+        "path": "tb/",
+        "framework": "upstream",
+        "description": "Upstream project's testbench harness \u2014 see source repo."
+      }
+    ],
+    "coverage": "functional"
   }
 }
