@@ -12,4 +12,4 @@ import:
     - path: "LICENSE"
 license:
   spdx: Apache-2.0
-metadata_locked: false
+metadata_locked: true
