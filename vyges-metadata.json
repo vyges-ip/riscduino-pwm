@@ -50,6 +50,7 @@
     "soc_generator_hints": {
       "top_module": "vyges_riscduino_pwm_apb",
       "rtl_files": [
+        "vyges-additions/registers.v",
         "vyges-additions/vyges_riscduino_pwm_apb.sv"
       ],
       "clock": {
@@ -70,7 +71,7 @@
           "pready": "PREADY"
         }
       },
-      "note": "vyges_riscduino_pwm_apb (vyges-additions/) bridges clk_i/rst_ni + APB4 to pwm_top's native riscduino register bus (PREADY follows reg_ack); exposes pad_gpio[8] in, pwm_wfm[6] out, pwm_intr->IRQ."
+      "note": "vyges_riscduino_pwm_apb (vyges-additions/) bridges clk_i/rst_ni + APB4 to pwm_top's native riscduino register bus (PREADY follows reg_ack); exposes pad_gpio[8] in, pwm_wfm[6] out, pwm_intr->IRQ. Vendors the upstream riscduino register lib (verilog/rtl/lib/registers.v, Apache-2.0) that pwm_top depends on but the pwm/src-only upstream import omitted (gen_32b_reg/generic_register/generic_intr_stat_reg)."
     }
   },
   "interfaces": [
