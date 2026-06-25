@@ -14,7 +14,7 @@
   ],
   "template": "standalone@1.0.0",
   "created": "2026-04-07T05:14:34Z",
-  "updated": "2026-04-07T05:14:34Z",
+  "updated": "2026-06-25T05:08:04Z",
   "categories": [
     {
       "main_category": "Interface Controllers",
@@ -45,6 +45,12 @@
       "rtl/pwm_glbl_reg.sv",
       "rtl/pwm_cfg_dglitch.sv"
     ]
+  },
+  "integration": {
+    "soc_generator_hints": {
+      "top_module": "pwm_top",
+      "note": "Integration top is pwm_top. Without this hint the soc-generator derives the module name from the IP name ('riscduino_pwm'), which does not match the RTL top module."
+    }
   },
   "interfaces": [
     {
